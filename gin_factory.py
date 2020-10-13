@@ -83,7 +83,6 @@ class GinFactory:
         :param output_folder: output folder.
         :param file_number: number of file (used in numerical scheme).
         :param sort_method: method to sort the keys in the output gin file. Not supported yet.
-        :return:
         """
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
@@ -112,7 +111,6 @@ class GinFactory:
 
         :param name:
         :param numerical_scheme_digits:
-        :return:
         """
         if name == 'numerical':
             def numerical_scheme(k):
@@ -124,27 +122,3 @@ class GinFactory:
                     raise ValueError(f"Number {k} has more digits than the numerical_scheme_digits argument ({numerical_scheme_digits}). Please fix this.")
 
             return numerical_scheme
-
-
-if __name__ == '__main__':
-    output_naming_scheme = 'numerical'
-    numerical_scheme_digits = 3
-    numerical_scheme_every = 1
-    gin_base_file = './configs/dbt_3d_to_2d_cnvclf_cnv=3dcnn_clf=resnetv2_ensemble_loss.gin'
-    output_folder = './gin_created_files/'
-    stable_args = {
-        'key1': 'val1',
-        'key2': True,
-        'key3': [2, 4, 6],
-        'key4': [],
-        'train.loss': [('ssim_loss', 0.99), ('l1_loss', 0.01), ('nll_2label_loss', 0)],
-    }
-    varying_args = {
-        'vkey1': ['val11', 'val12'],
-        'vkey2': ['val21', 'val22'],
-        'vkey3': ['val31', 'val32'],
-        'vkey4': ['val41', 'val42'],
-    }
-
-    factory = GinFactory(output_naming_scheme, numerical_scheme_digits, numerical_scheme_every)
-    factory.create_multiple_gin_files(output_folder, gin_base_file, stable_args, varying_args, 0)
