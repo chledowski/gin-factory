@@ -1,0 +1,13 @@
+# Args we will not change
+x1.a1=True
+x1.a2=[2, 4, 6]
+x1.a3='abc'
+
+# Args we will change to a specific value
+x2.a1=['benmal_auc', 'benmal_prauc']
+x2.a2="Train"
+x2.a3='120_lr=0.1_trfr=0.1/best_val.pt'
+
+# Args on which we will perform a search
+x3.a1=1e-3
+x3.a2=[('ssim_loss', 0.9), ('l1_loss', 0.095), ('nll_2label_loss', 0.005)]

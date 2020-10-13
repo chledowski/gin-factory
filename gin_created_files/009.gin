@@ -1,0 +1,8 @@
+x1.a1=True
+x1.a2=[2, 4, 6]
+x1.a3='abc'
+x2.a1=['val_benmal_auc_malignant', 'val_benmal_prauc_malignant']
+x2.a2=Valid
+x2.a3=./experiments/008/model_best_val.pt
+x3.a1=0
+x3.a2=[('ssim_loss', 0.9), ('l1_loss', 0.095), ('nll_2label_loss', 0.005)]

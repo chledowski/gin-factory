@@ -1,0 +1,8 @@
+x1.a1=True
+x1.a2=[2, 4, 6]
+x1.a3='abc'
+x2.a1=['benmal_auc_average', 'benmal_auc_malignant']
+x2.a2=Train
+x2.a3='120_lr=0.1_trfr=0.1/best_val.pt'
+x3.a1=0.0001
+x3.a2=[('ssim_loss', 0.9), ('l1_loss', 0.095), ('nll_2label_loss', 0.005)]
