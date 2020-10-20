@@ -50,11 +50,13 @@ class GinFactory:
                 for line in f:
                     processed_line = self.process_gin_line(line)
                     if processed_line:
-                        final_args_dict[processed_line[0]] = processed_line[1]
+                        final_args_dict[processed_line[0]] = eval(processed_line[1])
 
         # Loading args from stable_args
         if stable_args:
             for name in stable_args:
+                # if isinstance(stable_args[name], str):
+                #     final_args_dict[name] = rf'"{stable_args[name]}"'
                 final_args_dict[name] = stable_args[name]
 
         # Loading args from varying_args
@@ -70,6 +72,9 @@ class GinFactory:
             file_number = first_file_number
             for combination in combinations:
                 for i in range(len(varying_keys)):
+                    # if isinstance(combination[i], str):
+                    #     final_args_dict[varying_keys[i]] = rf'"{combination[i]}"'
+                    # else:
                     final_args_dict[varying_keys[i]] = combination[i]
                 self.save_args(final_args_dict, output_folder, file_number)
                 file_number += self.numerical_scheme_every
@@ -87,10 +92,12 @@ class GinFactory:
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
         save_filename = os.path.join(output_folder, self.output_naming_scheme(file_number))
-
         with open(save_filename, 'w') as f_save:
             for key in args_dict:
-                output = f'{key}={args_dict[key]}\n'
+                if isinstance(args_dict[key], str) and args_dict[key][0] not in {'"', "'"}:
+                    output = f'{key}="{args_dict[key]}"\n'
+                else:
+                    output = f'{key}={args_dict[key]}\n'
                 f_save.write(output)
 
     @staticmethod
